@@ -1,0 +1,668 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>СССР://2077 — Государственный Терминал Союза</title>
+  <meta name="description" content="Советский киберпанк: альтернативная вселенная, где СССР не распался. Лор, карта мира, персонажи, магазин ГОСТ.">
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' fill='%23e10600'/><text y='78' x='14' font-size='70' fill='white'>☭</text></svg>">
+</head>
+<body>
+
+<!-- ══════════ ШАПКА ══════════ -->
+<header class="hdr">
+  <button id="burger" aria-label="Меню">☰</button>
+  <a class="logo" href="#/home">
+    <span class="logo-mark" aria-hidden="true">
+      <svg viewBox="0 0 24 24" fill="none"><path d="M12 2l2.4 7.2H22l-6 4.4 2.3 7.1L12 16.4 5.7 20.7 8 13.6 2 9.2h7.6L12 2z" fill="#f5c518"/></svg>
+    </span>
+    <span class="logo-txt">
+      <b>СССР<i>://2077</i></b>
+      <span>ГОСУДАРСТВЕННЫЙ ТЕРМИНАЛ СОЮЗА</span>
+    </span>
+  </a>
+  <div class="hdr-status">
+    <span class="sys">УЗЕЛ «МОСКВА-1» · КАНАЛ ШИФРОВАН · ГОСТ-К</span>
+    <span class="on">СИСТЕМА В НОРМЕ</span>
+    <span id="clock">00:00:00</span>
+    <button class="cart-btn" id="cart-btn">ГОСТОРГ<span id="cart-count">0</span></button>
+  </div>
+</header>
+
+<div class="ticker" aria-hidden="true"><div id="ticker-track"></div></div>
+
+<div class="shell">
+
+<!-- ══════════ РЕЙКА ВКЛАДОК ══════════ -->
+<nav class="rail" id="rail" aria-label="Разделы">
+  <div class="rail-cap">I · Сознание</div>
+  <button class="tab-btn on" data-tab="home"><span class="ic">◉</span>Главная</button>
+  <button class="tab-btn" data-tab="lore"><span class="ic">⌛</span>Лор: хроника</button>
+  <button class="tab-btn" data-tab="map"><span class="ic">⬡</span>Карта мира</button>
+  <button class="tab-btn" data-tab="chars"><span class="ic">☗</span>Персонажи</button>
+  <div class="rail-sep"></div>
+  <div class="rail-cap">II · Госторг</div>
+  <button class="tab-btn" data-tab="shop"><span class="ic">▤</span>Магазин «ГОСТ»</button>
+  <button class="tab-btn" data-tab="tech"><span class="ic">⚙</span>Кибертехника</button>
+  <button class="tab-btn" data-tab="transport"><span class="ic">↣</span>Транспорт</button>
+  <div class="rail-sep"></div>
+  <div class="rail-cap">III · Пресса</div>
+  <button class="tab-btn" data-tab="news"><span class="ic">📰</span>Правда-2077</button>
+  <button class="tab-btn" data-tab="radio"><span class="ic">🎙</span>Радио «Маяк»</button>
+  <button class="tab-btn" data-tab="cinema"><span class="ic">▶</span>Кино «Космос»</button>
+  <button class="tab-btn" data-tab="library"><span class="ic">▥</span>Библиотека</button>
+  <button class="tab-btn" data-tab="archive"><span class="ic">▓</span>Архив КГБ</button>
+  <div class="rail-sep"></div>
+  <div class="rail-cap">IV · Разум и руки</div>
+  <button class="tab-btn" data-tab="space"><span class="ic">✦</span>Космос</button>
+  <button class="tab-btn" data-tab="science"><span class="ic">⚗</span>Наука</button>
+  <button class="tab-btn" data-tab="kitchen"><span class="ic">🍴</span>Кухня Союза</button>
+  <div class="rail-sep"></div>
+  <div class="rail-cap">V · Служба</div>
+  <button class="tab-btn" data-tab="game"><span class="ic">⌁</span>Игротерминал</button>
+  <button class="tab-btn" data-tab="terminal"><span class="ic">&gt;_</span>Терминал ГЛЭСНК</button>
+  <button class="tab-btn" data-tab="idcard"><span class="ic">🪪</span>Удостоверение</button>
+  <button class="tab-btn" data-tab="weather"><span class="ic">☀</span>Погода</button>
+  <button class="tab-btn" data-tab="exchange"><span class="ic">₽</span>Курс рубля</button>
+  <button class="tab-btn" data-tab="honor"><span class="ic">★</span>Доска почёта</button>
+  <button class="tab-btn" data-tab="contact"><span class="ic">✉</span>Связь</button>
+</nav>
+
+<!-- ══════════ СЦЕНА ══════════ -->
+<main class="stage">
+
+<!-- ─── 1. ГЛАВНАЯ ─── -->
+<section class="panel on" id="panel-home">
+  <div class="hero">
+    <div class="hero-img"><img src="assets/img/hero.jpg" alt="Ночной мегаполис Союза 2077 года"></div>
+    <div class="hero-corner">СЕКТОР М-77<br>КАНАЛ «ЗАРЯ» ● ОТКРЫТ</div>
+    <div class="hero-body">
+      <span class="hero-tag">110 ЛЕТ ОКТЯБРЯ · 51 ГОД КИБЕРКОНСТИТУЦИИ</span>
+      <h1>СОЮЗ НЕ РАСПАЛСЯ.<br><em>ОН СКОМПИЛИРОВАЛСЯ ЗАНОВО.</em></h1>
+      <p>Альтернативная история СССР в 2077 году: нейросети в Госплане, города на Луне, 15 республик в одной сети «Господарство». Добро пожаловать на государственный терминал.</p>
+      <div class="hero-acts">
+        <button class="btn btn-red" data-jump="lore">ОТКРЫТЬ ЛОР →</button>
+        <button class="btn btn-ghost" data-jump="map">СМОТРЕТЬ КАРТУ</button>
+        <button class="btn btn-ghost" data-jump="shop">В ГОСТОРГ</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="stats" id="home-stats">
+    <div class="stat"><div class="stat-num" data-num="51" data-suf="">0</div><div class="stat-label">ГОД КИБЕРКОНСТИТУЦИИ</div></div>
+    <div class="stat"><div class="stat-num" data-num="15" data-suf="">0</div><div class="stat-label">РЕСПУБЛИК В СОЮЗЕ</div></div>
+    <div class="stat"><div class="stat-num" data-num="2077" data-suf="">0</div><div class="stat-label">ГОД ОТ ОКТЯБРЯ</div></div>
+    <div class="stat"><div class="stat-num" data-num="98" data-suf="%">0</div><div class="stat-label">ЭНЕРГИИ С ТЕРМОЯДА</div></div>
+  </div>
+
+  <div class="home-grid">
+    <div class="panel-box">
+      <h3>Быстрый проход</h3>
+      <div class="quick">
+        <a href="#/lore" data-jump="lore"><b>⌛ Хроника</b>Как Союз пережил 1991-й и зачем ему нейросети</a>
+        <a href="#/map" data-jump="map"><b>⬡ Карта мира</b>18 держав, флаги, идеологии, отношения</a>
+        <a href="#/chars" data-jump="chars"><b>☗ Герои эпохи</b>Шесть досье: маршал, академик, хакер…</a>
+        <a href="#/shop" data-jump="shop"><b>▤ Магазин ГОСТ</b>Импланты, «Волги», кола «Заря», ключи</a>
+        <a href="#/game" data-jump="game"><b>⌁ Игротерминал</b>«Гадюка-8» — змея Госкомспорта</a>
+        <a href="#/terminal" data-jump="terminal"><b>&gt;_ Терминал</b>Командная строка ГОСТЕРМИНАЛА СССР/77</a>
+      </div>
+    </div>
+    <div class="panel-box">
+      <h3>Сводка ТАСС · сегодня</h3>
+      <ul class="obit">
+        <li><b>Космос:</b> станция «Заря-7» вышла на марсианскую орбиту — стыковка с Новым Востоком через 14 часов.</li>
+        <li><b>Экономика:</b> пятилетка «Синтез-9» выполнена на 114% — рекорд Госплана-Нейро.</li>
+        <li><b>Быт:</b> норма кавиара поднята до 40 г/сут для граждан старше 70 лет.</li>
+        <li><b>Культура:</b> в «Космосе» идёт реставрация «Планеты бурь» в 4K — билеты по жетонам.</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="foot">
+    <span><b>СССР://2077</b> · вымышленный государственный терминал · все совпадения с реальностью — от ностальгии</span>
+    <span>ГЛАСНОСТЬ-ТЕХНОЛОГИЯ · ПОДПИСЬ ОСК-512 · 2077</span>
+  </div>
+</section>
+
+<!-- ─── 2. ЛОР ─── -->
+<section class="panel" id="panel-lore">
+  <div class="p-kicker">РАЗДЕЛ I · АЛЬТЕРНАТИВНАЯ ИСТОРИЯ</div>
+  <h1 class="p-title">ЛОР <span class="alt">СОЮЗА-2077</span></h1>
+  <div class="p-rule"></div>
+  <p class="p-sub">Полная хроника вселенной, где СССР не распался, а перешёл на цифровую партию, орбитальные города и план, который считает машина. Читается за чаем «Крепкий дух».</p>
+
+  <div class="lore-intro">
+    <div class="lore-text">
+      <p>В 1991 году история разошлась не с грохотом, а с <b>щелчком мыши</b>. Вместо путча — электронный референдум, вместо распада — новая редакция Конституции, написанная руками инженеров и профессоров. Союз сохранился, но стал другим: плановое хозяйство получил компилятор, партия — открытый репозиторий, республики — право вето в Киберсовете.</p>
+      <p>К 2077 году это цивилизация, где <b>кибернетика — государственная религия</b>, космонавтика — обычная профессия, а гражданин получает «Рабочий Профиль» ещё до рождения. На Марсе стоит город Новый Восток, на Луне — полтора миллиона человек, а в Гагаринске ракеты видно из космоса невооружённым глазом.</p>
+      <p>Ниже — ключевые эпохи, от Октября до сегодняшнего дня, и главные силы, которые держат машину истории в движении.</p>
+    </div>
+    <div class="lore-quote">
+      «План — это программа, а партия — её компилятор.»
+      <span>— АМИНА БАГРАТИОНИ, ТБИЛИССКИЙ КИБЕРКОНГРЕСС, 1985</span>
+    </div>
+  </div>
+
+  <div class="panel-box" style="margin-bottom:14px"><h3>Хроника эпох</h3></div>
+  <div id="timeline"></div>
+
+  <div class="panel-box" style="margin-bottom:14px"><h3>Силы и фракции</h3></div>
+  <div id="factions"></div>
+
+  <div class="foot"><span>ЛОР-архив · издание 12-е, стереотипное · ГОСИЗДАТ «КОММУНИЗМ И СЕТЬ»</span></div>
+</section>
+
+<!-- ─── 3. КАРТА ─── -->
+<section class="panel" id="panel-map">
+  <div class="p-kicker">РАЗДЕЛ I · ГЕОГРАФИЯ БЛОКОВ</div>
+  <h1 class="p-title">КАРТА <span class="alt">МИРА-2077</span></h1>
+  <div class="p-rule"></div>
+  <p class="p-sub">18 держав, свои флаги, свои идеологии. Нажмите на точку или строку списка — откроется досье страны. Красный пояс, Запад и неприсоединённые — под фильтрами.</p>
+
+  <div class="map-filters">
+    <button class="map-filter on" data-bloc="all">Весь мир</button>
+    <button class="map-filter" data-bloc="red">Красный пояс</button>
+    <button class="map-filter" data-bloc="west">Западный блок</button>
+    <button class="map-filter" data-bloc="neutral">Неприсоединённые</button>
+  </div>
+
+  <div class="map-wrap">
+    <div>
+      <div class="map-box">
+        <svg class="world" viewBox="0 0 1000 500" preserveAspectRatio="none" aria-hidden="true">
+          <defs>
+            <pattern id="grid" width="25" height="25" patternUnits="userSpaceOnUse">
+              <path d="M25 0H0V25" fill="none" class="land-grid"/>
+            </pattern>
+          </defs>
+          <rect width="1000" height="500" fill="#070a12"/>
+          <rect width="1000" height="500" fill="url(#grid)"/>
+          <!-- Северная Америка -->
+          <path class="land" d="M60,78 L110,60 L170,55 L230,62 L275,78 L305,95 L318,125 L305,150 L292,168 L285,190 L278,212 L272,228 L262,222 L255,200 L240,188 L222,178 L205,172 L188,160 L168,152 L148,148 L128,140 L108,128 L88,118 L72,100 Z"/>
+          <path class="land" d="M278,214 L292,220 L305,235 L318,250 L330,262 L338,275 L330,282 L318,272 L305,258 L292,245 L280,232 Z"/>
+          <!-- Гренландия -->
+          <path class="land" d="M330,40 L370,35 L395,50 L398,80 L380,98 L355,95 L335,78 L325,58 Z"/>
+          <!-- Южная Америка -->
+          <path class="land" d="M330,282 L355,275 L382,285 L400,310 L408,345 L402,380 L388,412 L372,435 L358,448 L345,440 L340,415 L332,388 L322,355 L315,325 L318,300 Z"/>
+          <!-- Африка -->
+          <path class="land" d="M455,155 L490,140 L530,138 L570,145 L600,160 L625,185 L640,215 L638,255 L625,295 L605,330 L585,355 L560,365 L535,358 L518,335 L508,305 L500,275 L488,248 L472,222 L458,195 L450,175 Z"/>
+          <!-- Европа -->
+          <path class="land" d="M470,95 L505,85 L545,88 L580,95 L605,105 L618,120 L610,138 L595,148 L575,152 L555,155 L535,150 L518,155 L500,162 L485,155 L472,142 L462,128 L458,112 Z"/>
+          <!-- Британия / Ирландия -->
+          <path class="land" d="M478,100 L495,96 L502,110 L496,128 L482,132 L472,120 Z"/>
+          <path class="land" d="M462,112 L472,110 L474,124 L464,126 Z"/>
+          <!-- Азия -->
+          <path class="land" d="M615,60 L670,48 L740,42 L820,48 L890,62 L945,85 L975,115 L982,150 L968,175 L945,190 L920,205 L895,222 L870,235 L845,248 L820,258 L800,252 L785,235 L770,220 L752,215 L735,225 L722,245 L710,265 L695,275 L678,268 L665,250 L655,230 L645,208 L635,188 L625,168 L615,148 L608,128 L602,108 L605,85 Z"/>
+          <!-- Индостан (выступ) -->
+          <path class="land" d="M710,265 L735,258 L755,270 L762,295 L755,325 L742,345 L728,338 L718,315 L710,290 Z"/>
+          <!-- Аравия -->
+          <path class="land" d="M635,195 L665,188 L690,200 L698,225 L685,248 L660,255 L642,240 L635,218 Z"/>
+          <!-- Индокитай / ЮВА -->
+          <path class="land" d="M800,252 L825,248 L842,262 L848,285 L838,305 L822,310 L810,295 L802,275 Z"/>
+          <path class="land" d="M848,312 L872,305 L890,315 L888,330 L865,335 L848,325 Z"/>
+          <path class="land" d="M895,340 L930,335 L945,350 L935,368 L905,368 L890,355 Z"/>
+          <!-- Япония -->
+          <path class="land" d="M955,175 L968,168 L975,185 L968,205 L955,215 L948,200 Z"/>
+          <!-- Австралия -->
+          <path class="land" d="M815,340 L855,325 L900,328 L930,345 L940,375 L928,405 L895,420 L855,418 L825,400 L812,372 Z"/>
+          <!-- НЗ / Новая Гвинея -->
+          <path class="land" d="M955,400 L975,395 L985,415 L970,432 L952,425 Z"/>
+          <path class="land" d="M895,305 L935,298 L955,310 L948,325 L915,328 L897,318 Z"/>
+          <!-- Антарктида (акцент) -->
+          <path class="land" style="fill:#101828" d="M80,470 L300,455 L540,450 L780,455 L950,468 L950,500 L80,500 Z"/>
+        </svg>
+        <div id="map-pins"></div>
+        <div class="map-legend">
+          <span><i style="background:#e10600"></i>красный пояс</span>
+          <span><i style="background:#4f8dff"></i>запад</span>
+          <span><i style="background:#f5c518"></i>нейтральные</span>
+        </div>
+      </div>
+    </div>
+
+    <div style="display:grid;gap:16px">
+      <div class="side-box">
+        <h3>Список держав</h3>
+        <div id="country-list"></div>
+      </div>
+      <div class="side-box">
+        <h3>Досье выбранной страны</h3>
+        <div class="country-card" id="country-card"></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="foot"><span>КАРТА · проекция Меркатора-Госплана · погрешность контуров ± algorithms</span></div>
+</section>
+
+<!-- ─── 4. ПЕРСОНАЖИ ─── -->
+<section class="panel" id="panel-chars">
+  <div class="p-kicker">РАЗДЕЛ I · ЛЮДИ ЭПОХИ</div>
+  <h1 class="p-title">ПЕРСОНАЖИ <span class="alt">2077</span></h1>
+  <div class="p-rule"></div>
+  <p class="p-sub">Шесть героев альтернативного Союза. У каждого — своё фото из архива «Контур-Охраны», своя биография, свой голос. Нажмите карточку, чтобы открыть полное досье.</p>
+  <div id="chars-grid"></div>
+  <div class="foot"><span>ДОСЬЕ · форма 7-К · снимки предоставлены героями или их ведомствами</span></div>
+</section>
+
+<!-- ─── 5. МАГАЗИН ─── -->
+<section class="panel" id="panel-shop">
+  <div class="p-kicker">РАЗДЕЛ II · ГОСУДАРСТВЕННАЯ ТОРГОВЛЯ</div>
+  <h1 class="p-title">МАГАЗИН <span class="alt">«ГОСТ»</span></h1>
+  <div class="p-rule"></div>
+  <p class="p-sub">Широкий ассортимент ГОСТОРГа: киберимплантаты, одежда, техника, транспорт, гастроном, книги и инструмент. У каждого товара — своё фото, подробное описание и характеристики по ГОСТ-2077.</p>
+
+  <div class="shop-bar" id="shop-cats">
+    <button class="cat-chip on" data-cat="all">Всё</button>
+    <button class="cat-chip" data-cat="импланты">Киберимплантаты</button>
+    <button class="cat-chip" data-cat="одежда">Одежда</button>
+    <button class="cat-chip" data-cat="техника">Техника</button>
+    <button class="cat-chip" data-cat="транспорт">Транспорт</button>
+    <button class="cat-chip" data-cat="гастроном">Гастроном</button>
+    <button class="cat-chip" data-cat="книги">Книги</button>
+    <button class="cat-chip" data-cat="досуг">Досуг</button>
+    <button class="cat-chip" data-cat="инструмент">Инструмент</button>
+    <span class="shop-note" id="shop-note">оплата рублём, трудоднем или «грантом» контура</span>
+  </div>
+
+  <div id="shop-grid"></div>
+
+  <div class="panel-box" style="margin-top:26px">
+    <h3>Правила ГОСТОРГа</h3>
+    <p style="font-size:13px;color:var(--dim)">Возврат — 14 суток без объяснений, кроме имплантатов (только при заводском браке). Курьер «Ласточка» доставляет по трём столицам за 2 часа; в другие города — «Ирбисом» overnight. Оформите заказ в корзине — и ждите гудка канала «Гранит».</p>
+  </div>
+
+  <div class="foot"><span>ГОСТОРГ · каталог № 2077/09 · цены указаны в советских рублях</span></div>
+</section>
+
+<!-- ─── 6. КИБЕРТЕХНИКА ─── -->
+<section class="panel" id="panel-tech">
+  <div class="p-kicker">РАЗДЕЛ II · СПРАВОЧНИК</div>
+  <h1 class="p-title">КИБЕР<span class="alt">ТЕХНИКА</span></h1>
+  <div class="p-rule"></div>
+  <p class="p-sub">Не магазин — хранилище знаний. Десять ключевых технологий Союза-2077: что это, откуда взялось и почему без этого не работает ни завод, ни Госплан, ни вы.</p>
+  <div class="tech-grid" id="tech-grid"></div>
+  <div class="foot"><span>Справочник ГОСНАУКИ · редакция 4.1 · сверено с ГОСТ-2077</span></div>
+</section>
+
+<!-- ─── 7. ГАЗЕТА ─── -->
+<section class="panel" id="panel-news">
+  <div class="p-kicker">РАЗДЕЛ III · ГЛАСНОСТЬ</div>
+  <h1 class="p-title">ГАЗЕТА <span class="alt">«ПРАВДА-2077»</span></h1>
+  <div class="p-rule"></div>
+  <p class="p-sub">Первая полоса Союза. Шесть свежих выпусков: экономика, космос, рынок, культура. Нажмите на статью — откроется «бумажный» разворот.</p>
+  <div id="news-grid"></div>
+  <div class="foot"><span>ГАЗЕТА ЦК ЭП · подписка по «Рабочему Профилю» · тираж 42 млн</span></div>
+</section>
+
+<!-- ─── 8. РАДИО ─── -->
+<section class="panel" id="panel-radio">
+  <div class="p-kicker">РАЗДЕЛ III · ЭФИР</div>
+  <h1 class="p-title">РАДИО <span class="alt">«МАЯК-77»</span></h1>
+  <div class="p-rule"></div>
+  <p class="p-sub">Главный приёмник Союза. Включите питание, выберите передачу — равномощник покажет сигнал. Плеер «Радиотехника Н-3» продаётся в магазине.</p>
+  <div class="radio-wrap">
+    <div class="radio-deck">
+      <div style="text-align:center;font-size:10px;letter-spacing:.3em;color:var(--dim)">МЕСТНЫЙ КОНТУР · УКВ 100.7</div>
+      <div class="deck-dial" aria-hidden="true"></div>
+      <div id="eq" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div>
+      <button id="radio-power">○ ВЫКЛ</button>
+      <div id="radio-now">— затише на волне —</div>
+    </div>
+    <div class="radio-list-box">
+      <div class="radio-row" style="cursor:default;background:rgba(225,6,0,.15);font-size:10px;letter-spacing:.18em;color:var(--dim)">
+        <span>№</span><span>ПЕРЕДАЧА</span><span>АВТОР</span><span>ЖАНР</span><span style="text-align:right">ДЛИТ.</span>
+      </div>
+      <div id="radio-list"></div>
+    </div>
+  </div>
+  <div class="foot"><span>ГОСТЕЛЕРАДИО СССР · передача ведётся в 15 республиках и на 4 орбитах</span></div>
+</section>
+
+<!-- ─── 9. КИНО ─── -->
+<section class="panel" id="panel-cinema">
+  <div class="p-kicker">РАЗДЕЛ III · ИСКУССТВО</div>
+  <h1 class="p-title">КИНОТЕАТР <span class="alt">«КОСМОС»</span></h1>
+  <div class="p-rule"></div>
+  <p class="p-sub">Афиша месяца: от отреставрированной классики до документалистики, снятой на орбите. Билет — электронный, вход по жетону.</p>
+  <div id="cinema-grid"></div>
+  <div class="foot"><span>КИНОСЕТЬ СОЮЗА · возрастная категория 6+ · после титров — песня хора</span></div>
+</section>
+
+<!-- ─── 10. БИБЛИОТЕКА ─── -->
+<section class="panel" id="panel-library">
+  <div class="p-kicker">РАЗДЕЛ III · ЗНАНИЕ</div>
+  <h1 class="p-title">БИБЛИО<span class="alt">ТЕКА</span></h1>
+  <div class="p-rule"></div>
+  <p class="p-sub">Восемь книг, без которых не понять эпоху: мемуары маршала, труд по нейроэкономике, антология кодеров и кулинарный сборник заводских столовых.</p>
+  <div id="books-grid"></div>
+  <div class="foot"><span>ГОСБИБЛИОТЕКА · читальный зал открыт 24/7 через «Рабочий Профиль»</span></div>
+</section>
+
+<!-- ─── 11. АРХИВ ─── -->
+<section class="panel" id="panel-archive">
+  <div class="p-kicker">РАЗДЕЛ III · ДСП</div>
+  <h1 class="p-title">АРХИВ <span class="alt">КОНТУР-ОХРАНЫ</span></h1>
+  <div class="p-rule"></div>
+  <p class="p-sub">Пять дел, которые когда-то были красными, а теперь — открыты для граждан. Раскройте дело: штамп расскажет, чем всё кончилось.</p>
+  <div id="archive-list"></div>
+  <div class="foot"><span>ЧИТАЛЬНЫЙ ЗАЛ · вода и вода только в закрытой тетради · курить в перерыве</span></div>
+</section>
+
+<!-- ─── 12. КУХНЯ ─── -->
+<section class="panel" id="panel-kitchen">
+  <div class="p-kicker">РАЗДЕЛ IV · БЫТ</div>
+  <h1 class="p-title">КУХНЯ <span class="alt">СОЮЗА</span></h1>
+  <div class="p-rule"></div>
+  <p class="p-sub">Шесть рецептов, которые держали на плаву и цех, и орбитальную станцию. Откройте блюдо — внутри состав и философия.</p>
+  <div id="recipes-grid"></div>
+  <div class="foot"><span>КУЛИНАРНЫЙ СБОРНИК АТС-7 · тираж 3 млн · клейстера в наличии</span></div>
+</section>
+
+<!-- ─── 13. ТРАНСПОРТ ─── -->
+<section class="panel" id="panel-transport">
+  <div class="p-kicker">РАЗДЕЛ II · КОЛЕСА И РЕАКТИВЫ</div>
+  <h1 class="p-title">ТРАНС<span class="alt">ПОРТ</span></h1>
+  <div class="p-rule"></div>
+  <p class="p-sub">От трамвая без водителя до марсианского лайнера: шесть машин, на которых держится движение Союза. Часть моделей — в магазине «ГОСТ».</p>
+  <div id="transport-grid"></div>
+  <div class="foot"><span>ГОСАВИАТРАНС · правила дороги СССР-2077, пункт 4: уступи пешеходу и протезу</span></div>
+</section>
+
+<!-- ─── 14. КОСМОС ─── -->
+<section class="panel" id="panel-space">
+  <div class="p-kicker">РАЗДЕЛ IV · ЗА ПРЕДЕЛАМИ АТМОСФЕРЫ</div>
+  <h1 class="p-title">КОСМОС <span class="alt">СССР</span></h1>
+  <div class="p-rule"></div>
+  <p class="p-sub">От «Востока» до «Зари-7» у Марса: хронология космической программы, которая в этой вселенной никогда не останавливалась.</p>
+
+  <div class="space-hero">
+    <img src="assets/img/space.jpg" alt="Орбитальная станция «Заря»">
+    <div class="sh-cap">СТАНЦИЯ «ЗАРЯ-7» · ФОТО С БОРТА ТРАНСПОРТНОГО МОДУЛЯ · <b>23.09.2077</b></div>
+  </div>
+
+  <div id="space-tl"></div>
+  <div class="foot"><span>ГЛАВКОСМОС · передача ведётся через радиоканал «Гранит»</span></div>
+</section>
+
+<!-- ─── 15. НАУКА ─── -->
+<section class="panel" id="panel-science">
+  <div class="p-kicker">РАЗДЕЛ IV · ГОСНАУКА</div>
+  <h1 class="p-title">НАУКА <span class="alt">И ЛАБОРАТОРИИ</span></h1>
+  <div class="p-rule"></div>
+  <p class="p-sub">Шесть институтов, которые кормят Союз идеями, и шесть изобретений, из-за которых Запад в 2047-м закрыл свои границы для литографий.</p>
+
+  <div class="sci-top">
+    <div class="panel-box">
+      <h3>Лаборатории страны</h3>
+      <div id="labs-grid" style="margin-top:4px"></div>
+    </div>
+    <div>
+      <figure class="sci-photo">
+        <img src="assets/img/lab.jpg" alt="Лаборатория Госнауки">
+        <figcaption>ИСПЫТАТЕЛЬНЫЙ КОРПУС · НОЧНАЯ СМЕНА · КАМЕРА 07</figcaption>
+      </figure>
+      <div class="panel-box" style="margin-top:14px">
+        <h3>Изобретения десятилетия</h3>
+        <div id="inv-list"></div>
+      </div>
+    </div>
+  </div>
+  <div class="foot"><span>ГОСНАУКА · патенты оформляются на бригаду, а не на одиночку — ГОСТ 9.1</span></div>
+</section>
+
+<!-- ─── 16. ИГРА ─── -->
+<section class="panel" id="panel-game">
+  <div class="p-kicker">РАЗДЕЛ V · ГОСКОМСПОРТ</div>
+  <h1 class="p-title">ИГРО<span class="alt">ТЕРМИНАЛ</span></h1>
+  <div class="p-rule"></div>
+  <p class="p-sub">«ГАДЮКА-8» — школьный стандарт Союза с 2049 года. Собирайте звёзды, расти змеёй, попадайте в таблицу чести завода. Управление: стрелки, WASD или свайп.</p>
+
+  <div class="game-wrap">
+    <div>
+      <div class="crt">
+        <canvas id="game-canvas" width="400" height="400" aria-label="Игра Гадюка-8"></canvas>
+        <div id="game-over">
+          <div>
+            <b>СВЯЗЬ ПОТЕРЯНА</b>
+            <div style="color:var(--dim);font-size:13px;margin-bottom:14px">Змея врезалась в контур. Перезапуск канала…</div>
+            <button class="btn btn-red" id="game-restart">ЗАНОВО (ПРОБЕЛ)</button>
+          </div>
+        </div>
+      </div>
+      <div class="hud">
+        <span>ОЧКИ <b id="game-score">0</b></span>
+        <span>РЕКОРД <b id="game-best">0</b></span>
+        <span>ВЕРСИЯ <b>8.0</b></span>
+      </div>
+    </div>
+    <div class="game-info">
+      <h3>ГАДЮКА-8</h3>
+      <p>Первая «звёздная» версия: вместо яблока — пятиконечная звезда, вместо ящика — зелёный контур «Госкомспорта». Каждые 10 очков — новый ранг: от «Ученика ТУ-8» до «Мастера Союза».</p>
+      <p>Рекорд сохраняется в памяти терминала (localStorage). Если змея погибнет — просто нажмите пробел: Госкомспорт не считает это поражением, а «анализом».</p>
+      <div class="keys">
+        <i>← ↑ → ↓</i><i>W A S D</i><i>Ц Ф Ы В</i><i>ПРОБЕЛ — рестарт</i>
+      </div>
+      <div class="panel-box">
+        <h3>Ранги</h3>
+        <p style="font-size:12.5px;color:var(--dim)">0 очков — Ученик ТУ-8 · 50 — Бригадир-новичок · 150 — Кандидат в мастера · 300 — Мастер Союза · 500 — Легенда «Завода-77»</p>
+      </div>
+    </div>
+  </div>
+  <div class="foot"><span>ГОСКОМСПОРТ · змея не является изображением империалистической рептилии</span></div>
+</section>
+
+<!-- ─── 17. ТЕРМИНАЛ ─── -->
+<section class="panel" id="panel-terminal">
+  <div class="p-kicker">РАЗДЕЛ V · КОМАНДНАЯ СТРОКА</div>
+  <h1 class="p-title">ТЕРМИНАЛ <span class="alt">ГОСТЕРМИНАЛ/77</span></h1>
+  <div class="p-rule"></div>
+  <p class="p-sub">Черный экран, зелёный текст, никакой мыши. Напишите <b style="color:var(--gold)">помощь</b> — система сама расскажет, что умеет. Есть команда <b style="color:var(--gold)">секрет</b>…</p>
+
+  <div class="term">
+    <div class="term-bar">
+      <span>УЗЕЛ МОСКВА-1 · КАНАЛ 512БИТ · (С) КОНТУР-ОХРАНА</span>
+      <span>ГОТОВ</span>
+    </div>
+    <div id="term-out" aria-live="polite"></div>
+    <form id="term-form" autocomplete="off">
+      <span>гражданин@ссср2077:~$</span>
+      <input id="term-in" type="text" spellcheck="false" placeholder="введите команду…" aria-label="Команда терминала">
+    </form>
+  </div>
+
+  <div class="foot"><span>ГОСТЕРМИНАЛ · пароль не спрашивает — спрашивает совесть</span></div>
+</section>
+
+<!-- ─── 18. УДОСТОВЕРЕНИЕ ─── -->
+<section class="panel" id="panel-idcard">
+  <div class="p-kicker">РАЗДЕЛ V · ДОКУМЕНТЫ</div>
+  <h1 class="p-title">РАБОЧИЙ <span class="alt">ПРОФИЛЬ</span></h1>
+  <div class="p-rule"></div>
+  <p class="p-sub">Официальное удостоверение гражданина Союза. Заполните поля — карта пересоберётся в реальном времени: номер, штрих-матрица, штамп Киберсовета.</p>
+
+  <div class="id-wrap">
+    <form class="id-form" id="id-form">
+      <div>
+        <label for="id-name">ИМЯ И ФАМИЛИЯ (КАПС — ТРЕБОВАНИЕ ГОСТА)</label>
+        <input id="id-name" type="text" value="ИВАН ПЕТРОВИЧ КУЗНЕЦОВ" maxlength="42">
+      </div>
+      <div>
+        <label for="id-rank">ЗВАНИЕ / ДОЛЖНОСТЬ</label>
+        <input id="id-rank" type="text" value="мастер-кибермеханик, 6 разряд" maxlength="48">
+      </div>
+      <div>
+        <label for="id-city">ГОРОД ПРОПИСКИ</label>
+        <input id="id-city" type="text" value="Москва, сектор М-77" maxlength="40">
+      </div>
+      <button class="btn btn-red" type="submit" style="justify-content:center">СГЕНЕРИРОВАТЬ ПРОФИЛЬ</button>
+      <p style="font-size:11px;color:var(--dim)">Данные никуда не отправляются: карта собирается прямо в памяти вашего терминала.</p>
+    </form>
+
+    <div class="id-card">
+      <div class="id-top">
+        <b>СССР · РАБОЧИЙ ПРОФИЛЬ</b>
+        <span>ФОРМА 7-К / ОБРАЗЕЦ 2077</span>
+      </div>
+      <div class="id-main">
+        <div>
+          <div id="id-card-name">ГРАЖДАНИН СОЮЗА</div>
+          <div id="id-card-rank">рабочий</div>
+          <div id="id-card-city">Москва</div>
+        </div>
+        <div id="id-qr" aria-hidden="true"></div>
+      </div>
+      <div class="id-stamp">ВАЛИДНО</div>
+      <div class="id-foot">
+        <span>№ <b id="id-card-num">РП-000000</b></span>
+        <span>ВЫДАН <b id="id-card-date">—</b></span>
+        <span>КАНАЛ <b>ОСК-512</b></span>
+      </div>
+    </div>
+  </div>
+
+  <div class="foot"><span>УТРАТА ПРОФИЛЯ — восстановить в любом узле «Господарства» за 4 минуты</span></div>
+</section>
+
+<!-- ─── 19. ПОГОДА ─── -->
+<section class="panel" id="panel-weather">
+  <div class="p-kicker">РАЗДЕЛ V · ГИДРОМЕТСЛУЖБА</div>
+  <h1 class="p-title">ПОГОДА <span class="alt">И КИСЛОРОД</span></h1>
+  <div class="p-rule"></div>
+  <p class="p-sub">Шесть городов и два негорода: от московской мглы до вакуума Луноход-Града. Индекс кислорода — норма для лёгких гражданина Союза.</p>
+  <div id="weather-grid"></div>
+  <div class="foot"><span>ГИДРОМЕТ СОЮЗА · прогноз составлен нейросетью «Колмогоров-Погода»</span></div>
+</section>
+
+<!-- ─── 20. КУРСЫ ─── -->
+<section class="panel" id="panel-exchange">
+  <div class="p-kicker">РАЗДЕЛ V · ГОСБАНК</div>
+  <h1 class="p-title">КУРС <span class="alt">РУБЛЯ</span></h1>
+  <div class="p-rule"></div>
+  <p class="p-sub">Официальные котировки Госбанка Союза на 23 сентября 2077 года. Базовая единица — советский рубль, обеспеченный золотом и трудоднями.</p>
+
+  <div class="exch-grid">
+    <div style="overflow-x:auto">
+      <table class="rate-table">
+        <thead><tr><th>Единица</th><th>Тип</th><th>Курс</th><th>24 ч</th><th>Примечание</th></tr></thead>
+        <tbody id="rates-body"></tbody>
+      </table>
+    </div>
+    <div>
+      <div id="rate-chart" aria-label="График курса за 20 месяцев"></div>
+      <div class="chart-cap">РУБЛЬ К ЗОЛОТУ · 20 МЕСЯЦЕВ · РОСТ +129%</div>
+      <div class="panel-box" style="margin-top:14px">
+        <h3>Из кассовой справки</h3>
+        <p style="font-size:13px;color:var(--dim)">Обмен валюты — в отделениях Госбанка при наличии паспорта и улыбки кассира. Торговый лимит по доллару: 300 $ в месяц. «Гранит» контура не обменивается наружу — внутренний расчётный бит Господарства.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="foot"><span>ГОСБАНК СССР · котировки сверены в 09:00 МСК · телеграф «Гранит»</span></div>
+</section>
+
+<!-- ─── 21. ДОСКА ПОЧЁТА ─── -->
+<section class="panel" id="panel-honor">
+  <div class="p-kicker">РАЗДЕЛ V · ПОЧЁТ</div>
+  <h1 class="p-title">ДОСКА <span class="alt">ПОЧЁТА</span></h1>
+  <div class="p-rule"></div>
+  <p class="p-sub">Герои года по итогам Госплана, Госкосмоса и народного голосования «Рабочих Профилей». Золотая пластина в холле «Дома Союза».</p>
+  <div style="overflow-x:auto">
+    <table class="honor-table">
+      <thead><tr><th>№</th><th>Имя</th><th>Звание</th><th>Подвиг / вклад</th><th>Год</th></tr></thead>
+      <tbody id="honor-body"></tbody>
+    </table>
+  </div>
+  <div class="foot"><span>ДОСКА ПОЧЁТА · позолота настоящая, заслуги — тем более</span></div>
+</section>
+
+<!-- ─── 22. СВЯЗЬ ─── -->
+<section class="panel" id="panel-contact">
+  <div class="p-kicker">РАЗДЕЛ V · ОБРАТНАЯ СВЯЗЬ</div>
+  <h1 class="p-title">СВЯЗЬ <span class="alt">С ЦЕНТРОМ</span></h1>
+  <div class="p-rule"></div>
+  <p class="p-sub">Письма в Центр, вопросы в редакцию, жалобы на протез, предложения по плану. Форма работает без сервера — но настроение поднимает.</p>
+
+  <div class="contact-grid">
+    <form class="ct-form" id="contact-form">
+      <div>
+        <label for="ct-name" style="display:block;font-size:10px;letter-spacing:.18em;color:var(--dim);margin-bottom:6px">ВАШЕ ИМЯ ИЛИ ПОЗЫВНОЙ</label>
+        <input id="ct-name" type="text" placeholder="например: товарищ Ветров, позывной «Буря»" maxlength="60">
+      </div>
+      <div>
+        <label for="ct-who" style="display:block;font-size:10px;letter-spacing:.18em;color:var(--dim);margin-bottom:6px">КУДА ПИШЕТЕ</label>
+        <select id="ct-who">
+          <option>Редакция «Правда-2077»</option>
+          <option>Госторг — вопрос по заказу</option>
+          <option>Госнаука — идея / изобретение</option>
+          <option>Киберсовет республик</option>
+          <option>Дед Ивану (народный фронт)</option>
+        </select>
+      </div>
+      <div>
+        <label for="ct-msg" style="display:block;font-size:10px;letter-spacing:.18em;color:var(--dim);margin-bottom:6px">ТЕКСТ ОБРАЩЕНИЯ</label>
+        <textarea id="ct-msg" placeholder="Пишите свободно: Центр читает всё, но отвечает с юмором…" maxlength="900"></textarea>
+      </div>
+      <button class="btn btn-red" type="submit" style="justify-content:center">ОТПРАВИТЬ ПО КАНАЛУ «ГРАНИТ»</button>
+      <div id="contact-ok">✅ Обращение принято. Входящий № формирует дежурный оператор. Ожидайте ответ в эфире «Маяка».</div>
+    </form>
+
+    <div class="ct-info">
+      <h4>РЕКВИЗИТЫ ЦЕНТРА</h4>
+      <dl>
+        <div><dt>АДРЕС</dt><dd>Москва, Красная площадь, 1, узел «Москва-1»</dd></div>
+        <div><dt>ЭФИР</dt><dd>«Маяк-77», волна 100.7 УКВ · 24/7</dd></div>
+        <div><dt>ТЕЛЕТАЙП</dt><dd>granit@ussr2077.cp · шифр ОСК-512</dd></div>
+        <div><dt>ПРИЁМ</dt><dd>Пн–Сб, 09:00–18:00, обед 13:00–14:00</dd></div>
+        <div><dt>ДИЗЕРТЕР</dt><dd style="color:var(--gold)">Дед Иван — Калининград, ретранслятор-3</dd></div>
+      </dl>
+      <div style="border-top:1px dashed var(--line);padding-top:14px;font-size:12px;color:var(--dim)">
+        «Мы не обещаем ответа — мы обещаем, что прочитаем.»<br>
+        <span style="color:var(--cyan)">— девиз почтового отдела Госсвязи</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="foot"><span>ГОССВЯЗЬ · письмо доходит быстрее, чем вы допьёте чай</span></div>
+</section>
+
+</main>
+</div>
+
+<!-- ══════════ ОВЕРЛЕИ ══════════ -->
+<div id="modal" role="dialog" aria-modal="true"></div>
+
+<aside id="cart-drawer" aria-label="Корзина Госторга">
+  <div class="cart-head">
+    <b>КОРЗИНА ГОСТОРГа</b>
+    <button id="cart-close" aria-label="Закрыть корзину">✕</button>
+  </div>
+  <div id="cart-items"></div>
+  <div class="cart-foot">
+    <div class="cart-sum"><span>ИТОГО</span><b id="cart-sum">0 ₽</b></div>
+    <button id="cart-order">ОФОРМИТЬ ЗАКАЗ</button>
+  </div>
+</aside>
+
+<div id="flash" role="status"></div>
+
+<script src="js/data.js"></script>
+<script src="js/app.js"></script>
+<script>
+  // быстрый переход с главной
+  document.addEventListener('click', e => {
+    const j = e.target.closest('[data-jump]');
+    if (j) { e.preventDefault(); location.hash = '#/' + j.dataset.jump; }
+  });
+  // технология — рендер сразу при загрузке (лёгкая секция)
+  document.addEventListener('DOMContentLoaded', () => {
+    const g = document.getElementById('tech-grid');
+    if (g && DATA.tech) {
+      g.innerHTML = DATA.tech.map(t => `
+        <div class="tech"><h4>${t.n}</h4><p>${t.d}</p><span class="tag">${t.tag}</span></div>`).join('');
+    }
+  });
+</script>
+</body>
+</html>
