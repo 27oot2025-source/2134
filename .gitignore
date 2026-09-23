@@ -1,2 +1,5 @@
 # служебные промежуточные файлы (загрузки поиска картинок)
 image-search/
+node_modules/
+package-lock.json
+package.json

@@ -413,13 +413,16 @@
         <span class="rr-mood">${r.mood}</span>
         <span class="rr-len">${r.len}</span>
       </div>`).join("");
-    $$(".radio-row").forEach(row => row.addEventListener("click", () => {
-      $$(".radio-row").forEach(r => r.classList.remove("playing"));
-      row.classList.add("playing");
+    // кликаем только по строкам передач — шапка-заголовок не передача
+    $$("#radio-list .radio-row").forEach(row => row.addEventListener("click", () => {
       const r = DATA.radio[+row.dataset.i];
+      if (!r) return;
+      $$("#radio-list .radio-row").forEach(x => x.classList.remove("playing"));
+      row.classList.add("playing");
       $("#radio-now").textContent = r.t + " — " + r.a;
       radioOn = true;
       $("#eq").classList.add("on");
+      $("#radio-power").textContent = "◉ ВКЛ";
       flash(`В эфире «Маяк-77»: ${r.t}`);
     }));
   }
