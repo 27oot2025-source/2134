@@ -5,6 +5,7 @@
   "use strict";
   const $ = (s, c) => (c || document).querySelector(s);
   const $$ = (s, c) => Array.from((c || document).querySelectorAll(s));
+  let flashT; // таймер тоста — объявлен заранее: makeId() зовёт flash() до «Тоста»
 
   /* ───────── Навигация по вкладкам ───────── */
   const tabs = $$(".tab-btn");
@@ -185,7 +186,7 @@
           <h3>${c.name}</h3>
           <div class="char-sub">${c.faction} · ${c.born}</div>
           <p>${c.bio.slice(0, 140)}…</p>
-          <span class="char-more">ЧИТАЦЕ ДОСЬЕ →</span>
+          <span class="char-more">ЧИТАТЬ ДОСЬЕ →</span>
         </div>
       </article>`).join("");
     $$(".char-card").forEach(el => {
@@ -238,6 +239,8 @@
     const box = $("#shop-grid");
     if (!box) return;
     const items = DATA.products.filter(p => shopCat === "all" || p.cat === shopCat);
+    const note = $("#shop-note");
+    if (note) note.textContent = `${DATA.products.length} позиций · оплата рублём, трудоднем или «грантом» контура`;
     box.innerHTML = items.map(p => `
       <article class="prod" data-id="${p.id}" tabindex="0">
         <div class="prod-img">
@@ -443,7 +446,7 @@
         </div>
       </article>`).join("");
     $$(".ticket").forEach(b => b.addEventListener("click", () =>
-      flash("Билет элетронный. Покажите жетон на входе в «Космос».")));
+      flash("Билет электронный. Покажите жетон на входе в «Космос».")));
   }
 
   /* ───────── Архив ───────── */
@@ -604,7 +607,6 @@
   });
 
   /* ───────── Тост ───────── */
-  let flashT;
   function flash(text) {
     const el = $("#flash");
     if (!el) return;
@@ -786,8 +788,17 @@
     reset();
   }
 
+  /* ───────── Кибертехника (справочник) ───────── */
+  function renderTech() {
+    const g = $("#tech-grid");
+    if (!g || !DATA.tech) return;
+    g.innerHTML = DATA.tech.map(t => `
+      <div class="tech"><h4>${t.n}</h4><p>${t.d}</p><span class="tag">${t.tag}</span></div>`).join("");
+  }
+
   /* ───────── Ленивые анимации при открытии вкладок ───────── */
   function bootLazy(id) {
+    if (id === "tech") renderTech();
     if (id === "exchange") renderRates();
     if (id === "honor") renderHonor();
     if (id === "weather") renderWeather();
